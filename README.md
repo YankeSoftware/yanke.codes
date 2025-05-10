@@ -18,7 +18,10 @@ This is a single-page website designed to generate client inquiries and position
 
 - Mobile-first responsive design
 - Single-page layout with smooth scrolling
-- Comprehensive SEO optimization with structured data- Accessibility compliance with WCAG guidelines- Contact form with validation and security features- Fast loading performance with resource optimization
+- Comprehensive SEO optimization with structured data
+- Accessibility compliance with WCAG guidelines
+- Contact form with validation and security features
+- Fast loading performance with resource optimization
 - Security enhancements for external links and form submissions
 - Cleveland-focused content for local search visibility
 
@@ -34,21 +37,28 @@ cd yanke-codes-website
 
 2. Open `index.html` in your browser to view the site locally.
 
-### Railway.app Deployment
+### Railway.app Deployment with Docker
 
 1. Create a new project on [Railway.app](https://railway.app/)
 
 2. Connect your GitHub repository to Railway
 
-3. Deploy with the following settings:
-   - Service Type: Static Site
-   - Build Command: None (pre-built site)
-   - Deploy Directory: /
+3. Railway will automatically detect the Dockerfile and use it for deployment
+   - The Dockerfile uses NGINX to serve the static content
+   - It configures the server to handle SPA routing and compression
+   - Railway automatically sets the required PORT environment variable
 
 4. Add your custom domain (yanke.codes) through the Railway dashboard:
    - Go to Settings > Domains
    - Add your domain name
    - Follow the instructions to configure your DNS settings
+
+### Manual Deployment
+
+Alternatively, you can deploy without Docker by:
+1. Create a new empty service on Railway
+2. Connect to your GitHub repository
+3. Railway will detect the static website and deploy it
 
 ## Project Structure
 
@@ -62,6 +72,7 @@ yanke-codes-website/
 ├── assets/
 │   ├── png/                # PNG images (to be added)
 │   └── ico/                # Favicon and icons (to be added)
+├── Dockerfile              # Docker configuration for deployment
 └── README.md               # Project documentation
 ```
 
