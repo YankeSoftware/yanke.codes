@@ -1,6 +1,6 @@
 # Yanke.Codes Website
 
-A professional website for Justin Yanke, a Cleveland-based .NET specialist whom is specializing in AI integration consulting with Microsoft Semantic Kernel.
+A professional website for Justin Yanke, a Cleveland-based .NET specialist who specializes in AI integration consulting with Microsoft Semantic Kernel.
 
 ## Project Overview
 
@@ -61,10 +61,18 @@ This project follows Railway's NGINX template for deployment.
 yanke-codes-website/
 ├── site/                   # Web root directory
 │   ├── index.html          # Main HTML file
+│   ├── 404.html            # Custom 404 error page
+│   ├── 50x.html            # Custom 500 error page
+│   ├── thank-you.html      # Form submission thank you page
+│   ├── sitemap.xml         # XML sitemap for search engines
+│   ├── robots.txt          # Instructions for search engine crawlers
+│   ├── humans.txt          # Credits and site information
+│   ├── .well-known/        # Well-known URI directory
+│   │   └── security.txt    # Security contact information
 │   ├── css/                # CSS styles
 │   └── js/                 # JavaScript functionality
 ├── Dockerfile              # Docker configuration for Railway deployment
-├── nginx.conf              # Optional custom NGINX configuration
+├── nginx.conf              # Custom NGINX configuration
 ├── .dockerignore           # Docker build exclusions
 └── README.md               # Project documentation
 ```
@@ -96,13 +104,14 @@ The website is built with accessibility in mind:
 The contact form is configured for security and ease of use:
 
 1. Form validation with accessible error messages
-2. Honeypot spam protection
+2. Honeypot spam protection using the `_honey` field
 3. ARIA attributes for screen readers
-4. Formspree integration can be enabled by replacing the placeholder key
+4. [GetForm.io](https://getform.io/) integration for static site form handling
 
 To make it fully functional:
-1. Replace the placeholder Formspree key in the action URL 
-2. Or create a serverless function on Railway to handle form submissions
+1. Sign up for a free GetForm.io account
+2. Replace the placeholder GetForm ID in the form action URL (`https://getform.io/f/placeholder-getform-id`)
+3. The form will automatically redirect to the thank-you page after submission
 
 ## Author
 

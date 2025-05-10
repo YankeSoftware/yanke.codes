@@ -325,14 +325,15 @@
                         </div>
                     </div>
                     
-                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/yourkeyhere" method="POST">
-                        <!-- Security: CSRF token would be generated server-side -->
-                        <input type="hidden" name="_csrf" value="your-csrf-token">
+                    <form id="contact-form" class="contact-form" action="https://getform.io/f/placeholder-getform-id" method="POST">
+                        <!-- Form handled by GetForm.io - works with static sites -->
+                        <input type="hidden" name="_subject" value="Website Contact Form">
+                        <input type="hidden" name="_next" value="https://www.yanke.codes/thank-you">
                         
-                        <!-- hp for spm prvenetin -->
+                        <!-- Honeypot spam prevention -->
                         <div class="form-group honeypot">
                             <label for="website">Website</label>
-                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                            <input type="text" id="website" name="_honey" tabindex="-1" autocomplete="off">
                         </div>
                         
                         <div class="form-group">
