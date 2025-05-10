@@ -1,0 +1,11 @@
+/* OWNER */
+Name: Justin Yanke
+Site: https://www.yanke.codes
+Email: justin@yanke.codes
+Location: Cleveland, Ohio, USA
+
+/* SITE */
+Last update: 2025/05/09
+Standards: HTML5, CSS3
+Components: Vanilla JavaScript, Font Awesome, Google Fonts
+Software: Visual Studio Code, Git 
