@@ -1,3 +1,11 @@
+# Exclude everything
+*
+
+# Except the site directory and Dockerfile
+!site/
+!Dockerfile
+!nginx.conf
+
 .git
 .github
 .gitignore
@@ -6,5 +14,4 @@ LICENSE
 .DS_Store
 node_modules
 npm-debug.log
-Dockerfile
 .dockerignore 

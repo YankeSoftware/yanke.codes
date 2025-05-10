@@ -35,44 +35,37 @@ git clone https://github.com/yankesoftware/yanke-codes-website.git
 cd yanke-codes-website
 ```
 
-2. Open `index.html` in your browser to view the site locally.
+2. Open `site/index.html` in your browser to view the site locally.
 
-### Railway.app Deployment with Docker
+### Railway.app Deployment
+
+This project follows Railway's NGINX template for deployment.
 
 1. Create a new project on [Railway.app](https://railway.app/)
 
 2. Connect your GitHub repository to Railway
 
-3. Railway will automatically detect the Dockerfile and use it for deployment
-   - The Dockerfile uses NGINX to serve the static content
-   - It configures the server to handle SPA routing and compression
-   - Railway automatically sets the required PORT environment variable
+3. Railway will automatically detect the Dockerfile and deploy the site
+   - The site files are located in the `site/` directory
+   - NGINX serves these files as static content
+   - You can customize the NGINX configuration by uncommenting the relevant line in the Dockerfile
 
 4. Add your custom domain (yanke.codes) through the Railway dashboard:
    - Go to Settings > Domains
    - Add your domain name
    - Follow the instructions to configure your DNS settings
 
-### Manual Deployment
-
-Alternatively, you can deploy without Docker by:
-1. Create a new empty service on Railway
-2. Connect to your GitHub repository
-3. Railway will detect the static website and deploy it
-
 ## Project Structure
 
 ```
 yanke-codes-website/
-├── index.html              # Main HTML file
-├── css/
-│   └── styles.css          # CSS styles
-├── js/
-│   └── main.js             # JavaScript functionality
-├── assets/
-│   ├── png/                # PNG images (to be added)
-│   └── ico/                # Favicon and icons (to be added)
-├── Dockerfile              # Docker configuration for deployment
+├── site/                   # Web root directory
+│   ├── index.html          # Main HTML file
+│   ├── css/                # CSS styles
+│   └── js/                 # JavaScript functionality
+├── Dockerfile              # Docker configuration for Railway deployment
+├── nginx.conf              # Optional custom NGINX configuration
+├── .dockerignore           # Docker build exclusions
 └── README.md               # Project documentation
 ```
 
@@ -117,4 +110,4 @@ Justin Yanke - [justin@yanke.codes](mailto:justin@yanke.codes)
 
 ## License
 
-Copyright © 2025 Justin Yanke. All rights reserved. 
+Copyright © 2025 Justin Yanke. All rights reserved.

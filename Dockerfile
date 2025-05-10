@@ -1,21 +1,12 @@
 FROM nginx:alpine
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Copy static assets from site directory to nginx html directory
+COPY site /usr/share/nginx/html
 
-# Remove default nginx static assets
-RUN rm -rf ./*
+# Uncomment the line below to use a custom nginx config
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy static assets
-COPY . .
-
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/nginx.conf.template
-
-# Expose default nginx port
+# Expose port
 EXPOSE 80
 
-# Set nginx daemon off to run in foreground
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf.template && \
-    cp /etc/nginx/nginx.conf.template /etc/nginx/nginx.conf && \
-    nginx -g 'daemon off;' 
+# Use the default CMD from nginx image
