@@ -1,6 +1,6 @@
 # Yanke.Codes Website
 
-A professional website for Justin Yanke, a Cleveland-based .NET specialist specializing in AI integration consulting with Microsoft Semantic Kernel.
+A professional website for Justin Yanke, a Cleveland-based .NET specialist whom is specializing in AI integration consulting with Microsoft Semantic Kernel.
 
 ## Project Overview
 
