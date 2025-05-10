@@ -25,7 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
+            // In real implementation, we'd let the form submit normally to its action URL
+            // For demo purposes, we'll prevent default and show a success message
             e.preventDefault();
+            
+            // Honeypot check - if the honeypot field is filled, it's likely a bot
+            const honeypot = document.getElementById('website');
+            if (honeypot && honeypot.value) {
+                console.log('Bot detected');
+                return false;
+            }
             
             // Get form data
             const formData = new FormData(contactForm);
@@ -40,8 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!input.value.trim()) {
                     isValid = false;
                     input.classList.add('error');
+                    // Enhance accessibility by adding aria-invalid
+                    input.setAttribute('aria-invalid', 'true');
                 } else {
                     input.classList.remove('error');
+                    input.removeAttribute('aria-invalid');
                 }
             });
             
@@ -52,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!emailRegex.test(emailInput.value)) {
                 isValid = false;
                 emailInput.classList.add('error');
+                emailInput.setAttribute('aria-invalid', 'true');
             }
             
             if (!isValid) {
@@ -83,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const messageElement = document.createElement('div');
         messageElement.className = `form-message ${type}`;
         messageElement.textContent = message;
+        // Add appropriate role for accessibility
+        messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
         
         // Insert after form
         contactForm.insertAdjacentElement('afterend', messageElement);
@@ -105,10 +120,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                // Adjust scroll position based on header height
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
                 window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Adjust for header height
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
+                
+                // Set focus to the target element for accessibility
+                targetElement.setAttribute('tabindex', '-1');
+                targetElement.focus({preventScroll: true});
             }
         });
     });

@@ -64,6 +64,10 @@ h3 {
     font-size: clamp(1.5rem, 3vw, 1.8rem);
 }
 
+h4 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
 p {
     margin-bottom: var(--space-md);
 }
@@ -86,6 +90,27 @@ ul {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--text-light);
+    padding: 8px;
+    z-index: 1001;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Hide honeypot field */
+.honeypot {
+    display: none;
 }
 
 /* Layout */
@@ -349,35 +374,74 @@ section {
 }
 
 /* Skills */
-.skills {
+.skills-container {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    text-align: center;
+}
+
+.skills-container h3 {
+    margin-bottom: var(--space-lg);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
     text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
-.skill-bars {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
+.skill-area {
+    background-color: var(--section-bg);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-info {
-    display: flex;
-    justify-content: space-between;
+.skill-area:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-area h4 {
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+    font-size: 1.2rem;
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-list li {
     margin-bottom: var(--space-xs);
+    position: relative;
+    padding-left: 1.5rem;
 }
 
-.skill-bar {
-    height: 10px;
-    background-color: var(--border);
-    border-radius: 5px;
-    overflow: hidden;
+.skill-list li:before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
 }
 
+/* Remove the old skill styles */
+.skill-bars,
+.skill-info,
+.skill-bar,
 .skill-level {
-    height: 100%;
-    background-color: var(--primary);
-    border-radius: 5px;
+    /* Keeping these selectors but removing properties to ensure old styles don't interfere */
+    display: none;
 }
 
 /* Experience Timeline */
@@ -468,6 +532,8 @@ section {
         right: auto;
     }
 }
+
+
 
 /* Services Section */
 .services {
